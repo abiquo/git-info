@@ -1,0 +1,51 @@
+h3. Introduction
+
+Maven plugin to retrieve a nice version number from a Git repository
+
+
+h3. Usage
+
+Include the plugin into your pom file
+
+<pre>
+  <plugin>
+      <groupId>com.abiquo.git</groupId>
+      <artifactId>git-info</artifactId>
+      <executions>
+      	  <execution><goals><goal>git.info</goal></goals></execution>
+      </executions>
+  </plugin>
+</pre>
+
+By default the plugins sets the project property @git.info.revision@ with the value returned by the command @git log -1 --format=format:%h@.
+
+h3. Configuration
+
+It can take a list of entries as configuration parameter. Each entry has these variables:
+
+	* prefix: is the prefix name to replace @git.info@. E.i: @information@ sets the variable @information.revision@.
+	* path: is path to execute the command from. By default is the directory from maven is executed.
+
+For example:
+
+<pre>
+  <plugin>
+      <groupId>com.abiquo.git</groupId>
+      <artifactId>git-info</artifactId>
+      <executions>
+      	  <execution><goals><goal>git.info</goal></goals></execution>
+      </executions>
+      <configuration>
+      	<entries>
+      		<entry>
+      			<prefix>repo1.info</prefix>
+      			<path>.</path>
+      		</entry>
+      		<entry>
+      			<prefix>repo2.info</prefix>
+      			<path>../repo2</path>
+      		</entry>
+      	</entries>
+      </configuration>
+  </plugin>
+</pre>
