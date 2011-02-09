@@ -44,11 +44,11 @@
    <distributionManagement>
         <repository>
             <id>artifactory</id>
-            <url>http://artifactory.bcn.abiquo.com/libs-releases-local</url>
+            <url>http://artifactory.bcn.abiquo.com/plugins-releases-local</url>
         </repository>
         <snapshotRepository>
             <id>artifactory</id>
-            <url>http://artifactory.bcn.abiquo.com/libs-snapshots-local</url>
+            <url>http://artifactory.bcn.abiquo.com/plugins-snapshots-local</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
