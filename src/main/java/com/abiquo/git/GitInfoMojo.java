@@ -39,13 +39,16 @@ public class GitInfoMojo extends AbstractMojo {
     @Override
 	public void execute() throws MojoExecutionException, MojoFailureException {		
 		try {
+			if (entries == null) {
+				entries = new Entry[]{new Entry(null, "git.info")};
+			}
 			
 			for (Entry entry : entries) {
 				String path = entry.getPath();
 				String prefix = entry.getPrefix() != null ? entry.getPrefix() : "git.info";
 				
 				String info = getInfo(path);			
-				project.getProperties().setProperty(prefix + ".revision", info);
+				project.getProperties().setProperty(prefix + ".revision", info);			
 			}
 		} catch (IOException e) {
 			throw new MojoExecutionException("error retrieving git information", e);
