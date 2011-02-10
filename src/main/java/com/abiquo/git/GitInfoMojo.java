@@ -56,25 +56,30 @@ public class GitInfoMojo extends AbstractMojo {
 	}
 	
 	private String getInfo(String path) throws IOException {
-		
+		StringBuilder builder = new StringBuilder("");
 
 		Runtime runtime = Runtime.getRuntime();
-		Process proc;
+		Process proc = null;
 		
 		if (path != null && !path.isEmpty()) {
-			proc = runtime.exec(GIT_INFO_COMMAND, new String[0], new File(path).getAbsoluteFile());
+			File base = new File(path);
+
+			if (base.exists()) {
+				proc = runtime.exec(GIT_INFO_COMMAND, new String[0], base.getAbsoluteFile());
+			}
 		} else {
 			proc = runtime.exec(GIT_INFO_COMMAND);
 		}
 		
-		BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-		
-		String line;
-		StringBuilder builder = new StringBuilder();
-		while (!procDone(proc)) {
-	        while((line = stdInput.readLine()) != null) {
-	        	builder.append(line);
-	        }
+		if (proc != null) {
+			BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+			String line;
+			while (!procDone(proc)) {
+		        while((line = stdInput.readLine()) != null) {
+		        	builder.append(line);
+		        }
+			}
 		}
 		
 		return builder.toString().trim();
