@@ -43,12 +43,12 @@
    
    <distributionManagement>
         <repository>
-            <id>artifactory</id>
-            <url>http://artifactory.bcn.abiquo.com/plugins-releases-local</url>
+            <id>abiquo-repo</id>
+            <url>http://repo.community.abiquo.com/plugins-releases-local</url>
         </repository>
         <snapshotRepository>
-            <id>artifactory</id>
-            <url>http://artifactory.bcn.abiquo.com/plugins-snapshots-local</url>
+            <id>abiquo-repo</id>
+            <url>http://repo.community.abiquo.com/plugins-snapshots-local</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
